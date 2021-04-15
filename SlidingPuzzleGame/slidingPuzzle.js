@@ -5,7 +5,7 @@ function swapTiles(cell1,cell2) {
     document.getElementById(cell2).className = temp;
   }
   
-  function shuffle() {
+ function shuffle() {
   //Use nested loops to access each cell of the 3x3 grid
   for (var row=1;row<=3;row++) { //For each row of the 3x3 grid
      for (var column=1;column<=3;column++) { //For each column in this row
@@ -50,6 +50,36 @@ function swapTiles(cell1,cell2) {
              return;
            }
          } 
-    }
-    
+    gameOverCheck();
+
+    }     
   }
+
+  function gameOverCheck(){
+    var i,j;
+    var correctTileCount = 0;
+    for(i =1;i<4;i++)
+    {
+        for(j=1;j<4;j++){
+          var cell = document.getElementById("cell"+i+j);
+          var tile = cell.className;
+          var tileNumber;
+          if(i==1){
+            tileNumber=j;
+          }
+          if(i==2){
+            tileNumber=j+3;
+          }
+          if(i==3){
+            tileNumber=j+6;
+          }
+            if(tile == "tile"+tileNumber){
+              correctTileCount++;
+            }
+        }     
+    }    
+    if(correctTileCount==9){
+    alert("Congratulations!")
+    }
+  }
+
